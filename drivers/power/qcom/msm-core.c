@@ -446,9 +446,9 @@ static long msm_core_ioctl(struct file *file, unsigned int cmd,
 	if (!argp)
 		return -EINVAL;
 
-	mpidr = (cluster << (MAX_CORES_PER_CLUSTER *
+	mpidr = (argp->cluster << (MAX_CORES_PER_CLUSTER *
 			MAX_NUM_OF_CLUSTERS));
-	get_user(cpumask, &argp->cpumask);
+	cpumask = argp->cpumask;
 
 	switch (cmd) {
 	case EA_LEAKAGE:
